@@ -22,7 +22,7 @@ function App() {
     <Route path='/requirement/manage' element={<ManageReForm/>}/>
     <Route path='/requirement/viewall' element={<ViewReForm/>}/>
     <Route path='/faculty' element={<FacultyView/>}/>
-    <Route path='/' element={<Login/>}/>
+    <Route path='/login' element={<Login/>}/>
     <Route path='/signup' element={<SignUp/>}/>
    </Routes>
    
