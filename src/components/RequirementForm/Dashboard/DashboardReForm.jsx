@@ -10,33 +10,27 @@ const DashboardReForm = () => {
     // uri
     const url = "http://localhost:5000/api/v1";
 
-  const [visible, setVisible] = useState(true);
+    const [userRole, setUserRole] = useState('');
     const [apiData, setApiData] = useState([]);
-
     useEffect(() => {
-
-      var userType = sessionStorage.getItem("userType");
-      var token = sessionStorage.getItem("userToken");
-
-      const headers = { 'x-access-token': token };
-
-      if (userType === 'user') {
-          setVisible(false);
-          axios.get(url + '/requirements', { headers: headers })
-              .then((getData) => {
-                  setApiData(getData.data);
-              })
-      }
-      else {
-          setVisible(true);
-          axios.get(url + '/requirement/read', { headers: headers })
-              .then((getData) => {
-                  setApiData(getData.data);
-              })
-      }
-
-  }, [])
-
+        // Fetch the user role from the backend API
+        const fetchUserRole = async () => {
+          try {
+            const response = await axios.get(`http://localhost:5000/api/v1/users/userRole`, {
+              headers: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`,
+              },
+            });
+            setUserRole(response.data.role);
+          } catch (error) {
+            console.log(error.response.data);
+            // TODO: Handle error
+          }
+        };
+    
+        fetchUserRole();
+      }, []);
+   
   const setData = (id, name, area, institution, category, hours, files, isClosed) => {
     localStorage.setItem("ID", id);
     localStorage.setItem("name", name);
@@ -107,7 +101,7 @@ const DashboardReForm = () => {
                                         </Table> </Segment>
                                 </div><div className="d-flex justify-content-center pt-3">
                                     {visible &&
-                                        <Link to='/create'>
+                                        <Link to='/requirement/create'>
                                             <button type="button" className="btn btn-secondary btn-lg">Create New Requirement</button>
                                         </Link>}
                                 </div>

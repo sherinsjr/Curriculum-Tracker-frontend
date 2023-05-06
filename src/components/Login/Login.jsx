@@ -24,7 +24,7 @@ const Login = () => {
       localStorage.setItem('token', token);
 
       // Redirect to the desired page after successful login
-      navigate('/create');
+      navigate('/requirement');
     } catch (error) {
       console.log(error);
       setError('Invalid username or password');
