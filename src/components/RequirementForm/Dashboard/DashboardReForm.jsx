@@ -107,7 +107,7 @@ const DashboardReForm = () => {
                                         </Table> </Segment>
                                 </div><div className="d-flex justify-content-center pt-3">
                                     {visible &&
-                                        <Link to='/requirement/create'>
+                                        <Link to='/create'>
                                             <button type="button" className="btn btn-secondary btn-lg">Create New Requirement</button>
                                         </Link>}
                                 </div>
