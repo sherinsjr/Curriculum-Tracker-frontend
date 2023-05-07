@@ -2,6 +2,7 @@ import React, {useEffect,useState} from 'react'
 import axios from 'axios';
 import { Table, Button, Segment } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
+import Sidebar from '../../Sidebar/Sidebar';
 
 
 
@@ -31,7 +32,7 @@ const DashboardReForm = () => {
         fetchUserRole();
       }, []);
    
-  const setData = (id, name, area, institution, category, hours, files, isClosed) => {
+  const setData = (id, name, area, institution, category, hours, files, isApprove) => {
     localStorage.setItem("ID", id);
     localStorage.setItem("name", name);
     localStorage.setItem("area", area);
@@ -39,11 +40,13 @@ const DashboardReForm = () => {
     localStorage.setItem("category", category);
     localStorage.setItem("hours", hours);
     localStorage.setItem("file", files);
-    localStorage.setItem("isClosed", isClosed);
+    localStorage.setItem("isApprove", isApprove);
   }
 
   return (
-    
+    <div className="App">
+        <div className="AppGlass">
+            <Sidebar/>
     <section className="Background">
        
             <div className="container py-5 h-100">
@@ -84,8 +87,8 @@ const DashboardReForm = () => {
                                                             <Table.Cell>{data.hours}</Table.Cell>
                                                             <Table.Cell>{data.file}</Table.Cell>
                                                             <Table.Cell>
-                                                                <Link to='/requirements/ReadOne'>
-                                                                    <Button className="btn btn-secondary btn-md" onClick={() => setData(data._id, data.name, data.area, data.institution, data.category, data.hours, data.file, data.isClosed)}>View</Button>
+                                                                <Link to='/requirements'>
+                                                                    <Button className="btn btn-secondary btn-md" onClick={() => setData(data._id, data.name, data.area, data.institution, data.category, data.hours, data.file, data.isApprove)}>View</Button>
                                                                 </Link>
 
                                                             </Table.Cell>
@@ -100,10 +103,13 @@ const DashboardReForm = () => {
 
                                         </Table> </Segment>
                                 </div><div className="d-flex justify-content-center pt-3">
-                                    {visible &&
-                                        <Link to='/requirement/create'>
-                                            <button type="button" className="btn btn-secondary btn-lg">Create New Requirement</button>
-                                        </Link>}
+                                {userRole === 'admin' ? (
+        <Link to='/create'>
+        <button type="button" className="btn btn-secondary btn-lg">Create New Requirement</button>
+    </Link>
+        ) : (
+          <p>Access denied. You need to be an admin to create a requirement.</p>
+        )}
                                 </div>
 
                             </div>
@@ -111,7 +117,9 @@ const DashboardReForm = () => {
                     </div>
                 </div>
             </div>
-         </section> 
+         </section>
+         </div>
+     </div>
   )
 }
 
