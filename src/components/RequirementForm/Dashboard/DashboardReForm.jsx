@@ -32,14 +32,14 @@ const DashboardReForm = () => {
         fetchUserRole();
       }, []);
    
-  const setData = (id, name, area, institution, category, hours, files, isApprove) => {
+  const setData = (id, name, area, institution, category, hours, file, isApprove) => {
     localStorage.setItem("ID", id);
     localStorage.setItem("name", name);
     localStorage.setItem("area", area);
     localStorage.setItem("institution", institution);
     localStorage.setItem("category", category);
     localStorage.setItem("hours", hours);
-    localStorage.setItem("file", files);
+    localStorage.setItem("file", file);
     localStorage.setItem("isApprove", isApprove);
   }
 
