@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import '../SignUp/SignUp.css';
 
@@ -79,6 +79,8 @@ const SignUp = () => {
       <button type="submit" className="btn btn-primary">
         Sign up
       </button>
+      <br/>
+      <span>Have an account? <Link to = "/login">Login</Link></span>
     </form>
   </div>
 

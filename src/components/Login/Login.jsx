@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import '../Login/Login.css';
 
@@ -84,6 +84,8 @@ const Login = () => {
         <button type="submit" className="btn btn-primary">
           Login
         </button>
+        <br/>
+        <span>Not yet registered? <Link to= "/signup">Register</Link></span>
       </form>
     </div>
   );

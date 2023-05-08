@@ -20,7 +20,7 @@ function App() {
     <Route path='/requirement' element={<DashboardReForm/>}/>
     <Route path='/create' element={<CreateReForm/>}/>
     <Route path='/requirement/manage' element={<ManageReForm/>}/>
-    <Route path='/requirement/viewall' element={<ViewReForm/>}/>
+    <Route path='/detail/:id' element={<ViewReForm/>}/>
     <Route path='/faculty' element={<FacultyView/>}/>
     <Route path='/login' element={<Login/>}/>
     <Route path='/signup' element={<SignUp/>}/>

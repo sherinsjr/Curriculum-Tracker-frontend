@@ -26,6 +26,7 @@ export const SidebarData = [
         icon: UilUserCircle,
         heading: "Profile",
         file: "/user/Profile"
+        
     },
     {
         icon: UilClipboardAlt,
