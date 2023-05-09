@@ -9,7 +9,7 @@ import axios from "axios";
 
 const Sidebar = () => {
   const [userRole, setUserRole] = useState("");
-  const navigate = useNavigate;
+  const navigate = useNavigate();
   const [selected, setSelected] = useState();
   const [expanded, setExpanded] = useState(true);
   const sidebarVariants = {
@@ -21,13 +21,6 @@ const Sidebar = () => {
     },
   };
 
-       //Confused about where to add visibility. Add the below code to the button or form as I did in createForm ( the whole form)and Dashboard
-      {/* {userRole === 'admin' ? (
-        
-        ) : (
-          <p>Access denied. You need to be an admin to manage.</p>
-        )}
-   */}
   useEffect(() => {
     // Fetch the user role from the backend API
     const fetchUserRole = async () => {
@@ -56,12 +49,22 @@ const Sidebar = () => {
     },
   };
 
-  const logout = () => {
-    localStorage.removeItem("");
-    localStorage.removeItem("");
-    localStorage.removeItem("");
-    navigate("");
+  const LogoutButton = () => {
+    const logout = () => {
+      localStorage.removeItem("token");
+      localStorage.removeItem("userRole");
+      localStorage.removeItem("userId");
+      navigate("/");
+    };
+
+    return (
+      <div className="menuItem" onClick={logout}>
+        <UilSignOutAlt />
+        <span>Signout</span>
+      </div>
+    );
   };
+
   return (
     <>
       <div
@@ -99,10 +102,7 @@ const Sidebar = () => {
               </div>
             );
           })}
-          <div className="menuItem" onClick={logout}>
-            <UilSignOutAlt />
-            <span>Signout</span>
-          </div>
+          <LogoutButton />
         </div>
       </motion.div>
     </>
