@@ -8,6 +8,7 @@ import ViewReForm from './components/RequirementForm/View/ViewReForm';
 import FacultyView from './components/Faculty/FacultyView'
 import Login from './components/Login/Login';
 import SignUp from './components/SignUp/SignUp';
+import Dashboard from './components/MainDashboard/Dashboard';
 
 
 
@@ -17,12 +18,13 @@ function App() {
    <BrowserRouter>
    
    <Routes>
+    <Route path='/dashboard' element={<Dashboard/>}/>
     <Route path='/requirement' element={<DashboardReForm/>}/>
     <Route path='/create' element={<CreateReForm/>}/>
     <Route path='/requirement/manage' element={<ManageReForm/>}/>
-    <Route path='/requirement/viewall' element={<ViewReForm/>}/>
+    <Route path='/detail/:id' element={<ViewReForm/>}/>
     <Route path='/faculty' element={<FacultyView/>}/>
-    <Route path='/login' element={<Login/>}/>
+    <Route path='/' element={<Login/>}/>
     <Route path='/signup' element={<SignUp/>}/>
    </Routes>
    

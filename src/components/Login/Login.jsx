@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import ('../Login/Login.css')
 
@@ -23,8 +23,29 @@ const Login = () => {
       // Store the token in local storage or any other secure storage method of your choice
       localStorage.setItem('token', token);
 
+       // Fetch the user role from the backend API
+       try {
+        const roleResponse = await axios.get('http://localhost:5000/api/v1/users/userRole', {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        const userRole = roleResponse.data.role;
+
+        if (userRole === 'admin') {
+          alert('Logged in successfully as admin.');
+        } else if (userRole === 'user') {
+          alert('Logged in successfully as user.');
+        } else {
+          alert('Logged in successfully.');
+        }
+      } catch (error) {
+        console.log(error.response.data);
+        // TODO: Handle error
+      }
+
       // Redirect to the desired page after successful login
-      navigate('/requirement');
+      navigate('/dashboard');
     } catch (error) {
       console.log(error);
       setError('Invalid username or password');
@@ -59,9 +80,14 @@ const Login = () => {
           />
         </div>
         {error && <p className="error-message">{error}</p>}
-        <button type="submit" className="btn btn-primary">
+        <div className="d-grid gap-2 col-6 mx-auto style=width:50px; ">
+        <button className="btn btn-outline-primary lbtn " type="submit"  >
           Login
         </button>
+        <br/>
+        <p className='lpara'>Not yet registered?.. <Link to= "/signup">Register</Link></p>
+        </div>
+      
       </form>
     </div>
   )

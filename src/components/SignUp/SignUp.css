@@ -42,7 +42,8 @@
     color: red;
   }
   
-  .btn {
+  .sbtn {
+    
     display: inline-block;
     padding: 8px 16px;
     margin-top: 10px;
@@ -54,6 +55,8 @@
     transition: background-color 0.2s ease;
   }
   
-  .btn:hover {
-    background-color: #0056b3;
+  .sbtn:hover {
+    background-color: #fff;
+    color: #0056b3;
+    
   }

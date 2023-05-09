@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import '../SignUp/SignUp.css';
 
@@ -28,7 +28,7 @@ const SignUp = () => {
       } catch (error) {
         setError(error.response.data.message);
       }
-    };
+    };  
   
   return (
     <div className="container signup">
@@ -76,9 +76,11 @@ const SignUp = () => {
         />
       </div>
       {error && <p className="error-message">{error}</p>}
-      <button type="submit" className="btn btn-primary">
+      <button type="submit" className="btn btn-outline-primary sbtn">
         Sign up
       </button>
+      <br />
+      <span>Have an account? <Link to = "/">Login</Link></span>
     </form>
   </div>
 

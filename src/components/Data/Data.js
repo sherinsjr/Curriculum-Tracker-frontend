@@ -4,7 +4,7 @@ import {
     UilEstate,
     UilClipboardAlt,
     UilUserCircle,
-    UilBookOpen,
+    // UilBookOpen,
     UilBell,
     // UilCompressLines,
     // UilMoneyWithdrawal,

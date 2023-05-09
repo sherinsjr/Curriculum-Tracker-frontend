@@ -60,7 +60,7 @@ const Sidebar = () => {
     localStorage.removeItem("");
     localStorage.removeItem("");
     localStorage.removeItem("");
-    navigate("");
+    navigate("/login");
   };
   return (
     <>
