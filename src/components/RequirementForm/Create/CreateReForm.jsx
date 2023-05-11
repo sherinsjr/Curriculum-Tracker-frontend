@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import Sidebar from "../../Sidebar/Sidebar";
 import "semantic-ui-css/semantic.min.css";
+import {BASE_URL} from '../../../services/helper'
 
 const CreateReForm = () => {
   const [userRole, setUserRole] = useState("");
@@ -21,7 +22,7 @@ const CreateReForm = () => {
     const fetchUserRole = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/api/v1/users/userRole`,
+          `${BASE_URL}/api/v1/users/userRole`,
           {
             headers: {
               Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -83,7 +84,7 @@ const CreateReForm = () => {
         formData.append("isApprove", requirement.isApprove);
 
         const response = await axios.post(
-          `http://localhost:5000/api/v1/create`,
+          `${BASE_URL}/api/v1/create`,
           formData,
           config
         );
@@ -209,7 +210,7 @@ const CreateReForm = () => {
 
                           <br />
                           <div className="d-flex justify-content-center">
-                            <Link to="/requirements/ReadAll">
+                            <Link to="/requirement">
                               <button
                                 type="button"
                                 className="btn btn-secondary btn-md"
@@ -220,7 +221,7 @@ const CreateReForm = () => {
                             <button
                               onClick={sendDataToAPI}
                               type="button"
-                              className="btn btn-secondary btn-md ms-2"
+                              className="btn btn-outline-secondary btn-md ms-2"
                             >
                               Create
                             </button>

@@ -6,10 +6,11 @@ import { useNavigate, Link } from "react-router-dom";
 import { UilSignOutAlt, UilBars } from "@iconscout/react-unicons";
 import { motion } from "framer-motion";
 import axios from "axios";
+import {BASE_URL} from '../../services/helper'
 
 const Sidebar = () => {
   const [userRole, setUserRole] = useState("");
-  const navigate = useNavigate;
+  const navigate = useNavigate();
   const [selected, setSelected] = useState();
   const [expanded, setExpanded] = useState(true);
   const sidebarVariants = {
@@ -21,19 +22,13 @@ const Sidebar = () => {
     },
   };
 
-       //Confused about where to add visibility. Add the below code to the button or form as I did in createForm ( the whole form)and Dashboard
-      {/* {userRole === 'admin' ? (
-        
-        ) : (
-          <p>Access denied. You need to be an admin to manage.</p>
-        )}
-   */}
+     
   useEffect(() => {
     // Fetch the user role from the backend API
     const fetchUserRole = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/api/v1/users/userRole`,
+          `${BASE_URL}/api/v1/users/userRole`,
           {
             headers: {
               Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -56,11 +51,19 @@ const Sidebar = () => {
     },
   };
 
-  const logout = () => {
-    localStorage.removeItem("");
-    localStorage.removeItem("");
-    localStorage.removeItem("");
-    navigate("/login");
+  const LogoutButton = () => {
+    const logout = () => {
+      localStorage.removeItem("token");
+      localStorage.removeItem("userRole");
+      localStorage.removeItem("userId");
+      navigate("/");
+    };
+    return (
+      <div className="menuItem" onClick={logout}>
+        <UilSignOutAlt />
+        <span>Signout</span>
+      </div>
+    );
   };
   return (
     <>
@@ -99,10 +102,7 @@ const Sidebar = () => {
               </div>
             );
           })}
-          <div className="menuItem" onClick={logout}>
-            <UilSignOutAlt />
-            <span>Signout</span>
-          </div>
+          <LogoutButton/>
         </div>
       </motion.div>
     </>

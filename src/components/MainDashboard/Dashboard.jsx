@@ -3,10 +3,11 @@ import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import { Button, Segment, Table } from 'semantic-ui-react';
 import Sidebar from '../Sidebar/Sidebar';
+import {BASE_URL} from '../../services/helper'
 
 const Dashboard = () => {
   // eri
-  const url = "http://localhost:5000/api/v1/requirement";
+  const url = `${BASE_URL}/api/v1/requirement`;
   const navigate = useNavigate(); // Access the navigate function for navigation
 
 
@@ -16,7 +17,7 @@ const Dashboard = () => {
       // Fetch the user role from the backend API
       const fetchUserRole = async () => {
           try {
-              const response = await axios.get(`http://localhost:5000/api/v1/users/userRole`, {
+              const response = await axios.get(`${BASE_URL}/api/v1/users/userRole`, {
                   headers: {
                       Authorization: `Bearer ${localStorage.getItem('token')}`,
                   },

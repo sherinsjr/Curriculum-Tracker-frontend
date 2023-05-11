@@ -1,7 +1,9 @@
+import {BASE_URL} from '../../services/helper'
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import ('../Login/Login.css')
+import ('../Login/Login.css');
+
 
 const Login = () => {
   const [username, setUsername] = useState('');
@@ -13,7 +15,7 @@ const Login = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post('http://localhost:5000/api/v1/users/login', {
+      const response = await axios.post(`${BASE_URL}/api/v1/users/login`, {
         username,
         password,
       });
@@ -25,7 +27,7 @@ const Login = () => {
 
        // Fetch the user role from the backend API
        try {
-        const roleResponse = await axios.get('http://localhost:5000/api/v1/users/userRole', {
+        const roleResponse = await axios.get(`${BASE_URL}/api/v1/users/userRole`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },

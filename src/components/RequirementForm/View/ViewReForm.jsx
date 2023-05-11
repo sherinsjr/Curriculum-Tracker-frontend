@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom';
 import Sidebar from '../../Sidebar/Sidebar';
+import {BASE_URL} from '../../../services/helper'
 import { Button, Container, Header, Message, Segment, Table } from 'semantic-ui-react';
 
 const ViewReForm = () => {
@@ -18,7 +19,7 @@ const ViewReForm = () => {
     // Fetch the user role from the backend API
     const fetchUserRole = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/api/v1/users/userRole`, {
+        const response = await axios.get(`${BASE_URL}/api/v1/users/userRole`, {
           headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`,
           },
@@ -36,7 +37,7 @@ const ViewReForm = () => {
   const fetchData = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:5000/api/v1/detail/${id}`,
+        `${BASE_URL}/api/v1/detail/${id}`,
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`,
@@ -59,7 +60,7 @@ const ViewReForm = () => {
     try {
       if (requirementData) {
         const id = requirementData.requirement._id;
-        await axios.delete(`http://localhost:5000/api/v1/requirement/${id}`, {
+        await axios.delete(`${BASE_URL}/api/v1/requirement/${id}`, {
           headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`,
           },
